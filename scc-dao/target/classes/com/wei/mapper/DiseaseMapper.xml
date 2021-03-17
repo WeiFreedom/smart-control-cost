@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.dao.DiseaseMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wei.entity.Disease">
+        <id column="tc_diag_code" property="diagCode" />
+        <result column="tc_diag_name" property="diagName" />
+        <result column="tc_diag_type" property="diagType" />
+        <result column="tc_diag_parent_code" property="diagParentCode" />
+        <result column="tc_diag_pinyin" property="diagPinyin" />
+        <result column="tc_sex" property="sex" />
+        <result column="tc_oper_flag" property="operFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        tc_diag_code, tc_diag_name, tc_diag_type, tc_diag_parent_code, tc_diag_pinyin, tc_sex, tc_oper_flag
+    </sql>
+
+</mapper>

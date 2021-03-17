@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.dao.TodoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wei.entity.Todo">
+        <id column="tc_todo_id" property="todoId" />
+        <result column="tc_dr_code" property="drCode" />
+        <result column="tc_todo_state" property="todoState" />
+        <result column="tc_todo_flag" property="todoFlag" />
+        <result column="tc_todo_time" property="todoTime" />
+        <result column="tc_todo_content" property="todoContent" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        tc_todo_id, tc_dr_code, tc_todo_state, tc_todo_flag, tc_todo_time, tc_todo_content
+    </sql>
+
+</mapper>

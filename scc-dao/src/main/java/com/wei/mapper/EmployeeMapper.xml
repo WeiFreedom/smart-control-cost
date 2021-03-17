@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.dao.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.wei.entity.Employee">
+    <id column="tc_dr_id" jdbcType="INTEGER" property="drId" />
+    <result column="tc_dr_code" jdbcType="VARCHAR" property="drCode" />
+    <result column="tc_dr_name" jdbcType="VARCHAR" property="drName" />
+    <result column="tc_dr_pinyin" jdbcType="VARCHAR" property="drPinyin" />
+    <result column="tc_password" jdbcType="VARCHAR" property="password" />
+    <result column="tc_dr_cardid" jdbcType="CHAR" property="drCardid" />
+    <result column="tc_dr_dept_code" jdbcType="VARCHAR" property="drDeptCode" />
+    <result column="tc_dr_dept_name" jdbcType="VARCHAR" property="drDeptName" />
+    <result column="tc_dr_level_code" jdbcType="VARCHAR" property="drLevelCode" />
+    <result column="tc_dr_level_name" jdbcType="VARCHAR" property="drLevelName" />
+    <result column="tc_dr_position_code" jdbcType="VARCHAR" property="drPositionCode" />
+    <result column="tc_dr_position_name" jdbcType="VARCHAR" property="drPositionName" />
+    <result column="tc_dr_photo" jdbcType="VARCHAR" property="drPhoto" />
+    <result column="tc_dr_phone" jdbcType="VARCHAR" property="drPhone" />
+    <result column="tc_dr_email" jdbcType="VARCHAR" property="drEmail" />
+    <result column="tc_dr_sex" jdbcType="CHAR" property="drSex" />
+    <result column="tc_dr_birthday" jdbcType="TIMESTAMP" property="drBirthday" />
+    <result column="tc_dr_edu" jdbcType="VARCHAR" property="drEdu" />
+    <result column="tc_dr_country" jdbcType="VARCHAR" property="drCountry" />
+    <result column="tc_dr_nation" jdbcType="VARCHAR" property="drNation" />
+    <result column="tc_dr_native_place" jdbcType="VARCHAR" property="drNativePlace" />
+    <result column="tc_dr_state" jdbcType="CHAR" property="drState" />
+    <result column="tc_dr_introduce" jdbcType="VARCHAR" property="drIntroduce" />
+    <result column="tc_dr_good" jdbcType="VARCHAR" property="drGood" />
+    <result column="tc_dr_expert_code" jdbcType="VARCHAR" property="drExpertCode" />
+    <result column="tc_dr_expert_name" jdbcType="VARCHAR" property="drExpertName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    tc_dr_id, tc_dr_code, tc_dr_name, tc_dr_pinyin, tc_password, tc_dr_cardid, tc_dr_dept_code, 
+    tc_dr_dept_name, tc_dr_level_code, tc_dr_level_name, tc_dr_position_code, tc_dr_position_name, 
+    tc_dr_photo, tc_dr_phone, tc_dr_email, tc_dr_sex, tc_dr_birthday, tc_dr_edu, tc_dr_country, 
+    tc_dr_nation, tc_dr_native_place, tc_dr_state, tc_dr_introduce, tc_dr_good, tc_dr_expert_code, 
+    tc_dr_expert_name
+  </sql>
+  <select id="selectByExample" parameterType="com.wei.entity.criteria.EmployeeQuery" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_employee
+    where tc_dr_id = #{drId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_employee
+    where tc_dr_id = #{drId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wei.entity.criteria.EmployeeQuery">
+    delete from tb_employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wei.entity.Employee">
+    insert into tb_employee (tc_dr_id, tc_dr_code, tc_dr_name, 
+      tc_dr_pinyin, tc_password, tc_dr_cardid, 
+      tc_dr_dept_code, tc_dr_dept_name, tc_dr_level_code, 
+      tc_dr_level_name, tc_dr_position_code, tc_dr_position_name, 
+      tc_dr_photo, tc_dr_phone, tc_dr_email, 
+      tc_dr_sex, tc_dr_birthday, tc_dr_edu, 
+      tc_dr_country, tc_dr_nation, tc_dr_native_place, 
+      tc_dr_state, tc_dr_introduce, tc_dr_good, 
+      tc_dr_expert_code, tc_dr_expert_name)
+    values (#{drId,jdbcType=INTEGER}, #{drCode,jdbcType=VARCHAR}, #{drName,jdbcType=VARCHAR}, 
+      #{drPinyin,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{drCardid,jdbcType=CHAR}, 
+      #{drDeptCode,jdbcType=VARCHAR}, #{drDeptName,jdbcType=VARCHAR}, #{drLevelCode,jdbcType=VARCHAR}, 
+      #{drLevelName,jdbcType=VARCHAR}, #{drPositionCode,jdbcType=VARCHAR}, #{drPositionName,jdbcType=VARCHAR}, 
+      #{drPhoto,jdbcType=VARCHAR}, #{drPhone,jdbcType=VARCHAR}, #{drEmail,jdbcType=VARCHAR}, 
+      #{drSex,jdbcType=CHAR}, #{drBirthday,jdbcType=TIMESTAMP}, #{drEdu,jdbcType=VARCHAR}, 
+      #{drCountry,jdbcType=VARCHAR}, #{drNation,jdbcType=VARCHAR}, #{drNativePlace,jdbcType=VARCHAR}, 
+      #{drState,jdbcType=CHAR}, #{drIntroduce,jdbcType=VARCHAR}, #{drGood,jdbcType=VARCHAR}, 
+      #{drExpertCode,jdbcType=VARCHAR}, #{drExpertName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wei.entity.Employee">
+    insert into tb_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="drId != null">
+        tc_dr_id,
+      </if>
+      <if test="drCode != null">
+        tc_dr_code,
+      </if>
+      <if test="drName != null">
+        tc_dr_name,
+      </if>
+      <if test="drPinyin != null">
+        tc_dr_pinyin,
+      </if>
+      <if test="password != null">
+        tc_password,
+      </if>
+      <if test="drCardid != null">
+        tc_dr_cardid,
+      </if>
+      <if test="drDeptCode != null">
+        tc_dr_dept_code,
+      </if>
+      <if test="drDeptName != null">
+        tc_dr_dept_name,
+      </if>
+      <if test="drLevelCode != null">
+        tc_dr_level_code,
+      </if>
+      <if test="drLevelName != null">
+        tc_dr_level_name,
+      </if>
+      <if test="drPositionCode != null">
+        tc_dr_position_code,
+      </if>
+      <if test="drPositionName != null">
+        tc_dr_position_name,
+      </if>
+      <if test="drPhoto != null">
+        tc_dr_photo,
+      </if>
+      <if test="drPhone != null">
+        tc_dr_phone,
+      </if>
+      <if test="drEmail != null">
+        tc_dr_email,
+      </if>
+      <if test="drSex != null">
+        tc_dr_sex,
+      </if>
+      <if test="drBirthday != null">
+        tc_dr_birthday,
+      </if>
+      <if test="drEdu != null">
+        tc_dr_edu,
+      </if>
+      <if test="drCountry != null">
+        tc_dr_country,
+      </if>
+      <if test="drNation != null">
+        tc_dr_nation,
+      </if>
+      <if test="drNativePlace != null">
+        tc_dr_native_place,
+      </if>
+      <if test="drState != null">
+        tc_dr_state,
+      </if>
+      <if test="drIntroduce != null">
+        tc_dr_introduce,
+      </if>
+      <if test="drGood != null">
+        tc_dr_good,
+      </if>
+      <if test="drExpertCode != null">
+        tc_dr_expert_code,
+      </if>
+      <if test="drExpertName != null">
+        tc_dr_expert_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="drId != null">
+        #{drId,jdbcType=INTEGER},
+      </if>
+      <if test="drCode != null">
+        #{drCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drName != null">
+        #{drName,jdbcType=VARCHAR},
+      </if>
+      <if test="drPinyin != null">
+        #{drPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="drCardid != null">
+        #{drCardid,jdbcType=CHAR},
+      </if>
+      <if test="drDeptCode != null">
+        #{drDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drDeptName != null">
+        #{drDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="drLevelCode != null">
+        #{drLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drLevelName != null">
+        #{drLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="drPositionCode != null">
+        #{drPositionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drPositionName != null">
+        #{drPositionName,jdbcType=VARCHAR},
+      </if>
+      <if test="drPhoto != null">
+        #{drPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="drPhone != null">
+        #{drPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="drEmail != null">
+        #{drEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="drSex != null">
+        #{drSex,jdbcType=CHAR},
+      </if>
+      <if test="drBirthday != null">
+        #{drBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drEdu != null">
+        #{drEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="drCountry != null">
+        #{drCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="drNation != null">
+        #{drNation,jdbcType=VARCHAR},
+      </if>
+      <if test="drNativePlace != null">
+        #{drNativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="drState != null">
+        #{drState,jdbcType=CHAR},
+      </if>
+      <if test="drIntroduce != null">
+        #{drIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="drGood != null">
+        #{drGood,jdbcType=VARCHAR},
+      </if>
+      <if test="drExpertCode != null">
+        #{drExpertCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drExpertName != null">
+        #{drExpertName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wei.entity.criteria.EmployeeQuery" resultType="java.lang.Long">
+    select count(*) from tb_employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_employee
+    <set>
+      <if test="record.drId != null">
+        tc_dr_id = #{record.drId,jdbcType=INTEGER},
+      </if>
+      <if test="record.drCode != null">
+        tc_dr_code = #{record.drCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drName != null">
+        tc_dr_name = #{record.drName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drPinyin != null">
+        tc_dr_pinyin = #{record.drPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        tc_password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drCardid != null">
+        tc_dr_cardid = #{record.drCardid,jdbcType=CHAR},
+      </if>
+      <if test="record.drDeptCode != null">
+        tc_dr_dept_code = #{record.drDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drDeptName != null">
+        tc_dr_dept_name = #{record.drDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drLevelCode != null">
+        tc_dr_level_code = #{record.drLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drLevelName != null">
+        tc_dr_level_name = #{record.drLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drPositionCode != null">
+        tc_dr_position_code = #{record.drPositionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drPositionName != null">
+        tc_dr_position_name = #{record.drPositionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drPhoto != null">
+        tc_dr_photo = #{record.drPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drPhone != null">
+        tc_dr_phone = #{record.drPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drEmail != null">
+        tc_dr_email = #{record.drEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drSex != null">
+        tc_dr_sex = #{record.drSex,jdbcType=CHAR},
+      </if>
+      <if test="record.drBirthday != null">
+        tc_dr_birthday = #{record.drBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.drEdu != null">
+        tc_dr_edu = #{record.drEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drCountry != null">
+        tc_dr_country = #{record.drCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drNation != null">
+        tc_dr_nation = #{record.drNation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drNativePlace != null">
+        tc_dr_native_place = #{record.drNativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drState != null">
+        tc_dr_state = #{record.drState,jdbcType=CHAR},
+      </if>
+      <if test="record.drIntroduce != null">
+        tc_dr_introduce = #{record.drIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drGood != null">
+        tc_dr_good = #{record.drGood,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drExpertCode != null">
+        tc_dr_expert_code = #{record.drExpertCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drExpertName != null">
+        tc_dr_expert_name = #{record.drExpertName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_employee
+    set tc_dr_id = #{record.drId,jdbcType=INTEGER},
+      tc_dr_code = #{record.drCode,jdbcType=VARCHAR},
+      tc_dr_name = #{record.drName,jdbcType=VARCHAR},
+      tc_dr_pinyin = #{record.drPinyin,jdbcType=VARCHAR},
+      tc_password = #{record.password,jdbcType=VARCHAR},
+      tc_dr_cardid = #{record.drCardid,jdbcType=CHAR},
+      tc_dr_dept_code = #{record.drDeptCode,jdbcType=VARCHAR},
+      tc_dr_dept_name = #{record.drDeptName,jdbcType=VARCHAR},
+      tc_dr_level_code = #{record.drLevelCode,jdbcType=VARCHAR},
+      tc_dr_level_name = #{record.drLevelName,jdbcType=VARCHAR},
+      tc_dr_position_code = #{record.drPositionCode,jdbcType=VARCHAR},
+      tc_dr_position_name = #{record.drPositionName,jdbcType=VARCHAR},
+      tc_dr_photo = #{record.drPhoto,jdbcType=VARCHAR},
+      tc_dr_phone = #{record.drPhone,jdbcType=VARCHAR},
+      tc_dr_email = #{record.drEmail,jdbcType=VARCHAR},
+      tc_dr_sex = #{record.drSex,jdbcType=CHAR},
+      tc_dr_birthday = #{record.drBirthday,jdbcType=TIMESTAMP},
+      tc_dr_edu = #{record.drEdu,jdbcType=VARCHAR},
+      tc_dr_country = #{record.drCountry,jdbcType=VARCHAR},
+      tc_dr_nation = #{record.drNation,jdbcType=VARCHAR},
+      tc_dr_native_place = #{record.drNativePlace,jdbcType=VARCHAR},
+      tc_dr_state = #{record.drState,jdbcType=CHAR},
+      tc_dr_introduce = #{record.drIntroduce,jdbcType=VARCHAR},
+      tc_dr_good = #{record.drGood,jdbcType=VARCHAR},
+      tc_dr_expert_code = #{record.drExpertCode,jdbcType=VARCHAR},
+      tc_dr_expert_name = #{record.drExpertName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wei.entity.Employee">
+    update tb_employee
+    <set>
+      <if test="drCode != null">
+        tc_dr_code = #{drCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drName != null">
+        tc_dr_name = #{drName,jdbcType=VARCHAR},
+      </if>
+      <if test="drPinyin != null">
+        tc_dr_pinyin = #{drPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        tc_password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="drCardid != null">
+        tc_dr_cardid = #{drCardid,jdbcType=CHAR},
+      </if>
+      <if test="drDeptCode != null">
+        tc_dr_dept_code = #{drDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drDeptName != null">
+        tc_dr_dept_name = #{drDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="drLevelCode != null">
+        tc_dr_level_code = #{drLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drLevelName != null">
+        tc_dr_level_name = #{drLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="drPositionCode != null">
+        tc_dr_position_code = #{drPositionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drPositionName != null">
+        tc_dr_position_name = #{drPositionName,jdbcType=VARCHAR},
+      </if>
+      <if test="drPhoto != null">
+        tc_dr_photo = #{drPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="drPhone != null">
+        tc_dr_phone = #{drPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="drEmail != null">
+        tc_dr_email = #{drEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="drSex != null">
+        tc_dr_sex = #{drSex,jdbcType=CHAR},
+      </if>
+      <if test="drBirthday != null">
+        tc_dr_birthday = #{drBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drEdu != null">
+        tc_dr_edu = #{drEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="drCountry != null">
+        tc_dr_country = #{drCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="drNation != null">
+        tc_dr_nation = #{drNation,jdbcType=VARCHAR},
+      </if>
+      <if test="drNativePlace != null">
+        tc_dr_native_place = #{drNativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="drState != null">
+        tc_dr_state = #{drState,jdbcType=CHAR},
+      </if>
+      <if test="drIntroduce != null">
+        tc_dr_introduce = #{drIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="drGood != null">
+        tc_dr_good = #{drGood,jdbcType=VARCHAR},
+      </if>
+      <if test="drExpertCode != null">
+        tc_dr_expert_code = #{drExpertCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drExpertName != null">
+        tc_dr_expert_name = #{drExpertName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tc_dr_id = #{drId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wei.entity.Employee">
+    update tb_employee
+    set tc_dr_code = #{drCode,jdbcType=VARCHAR},
+      tc_dr_name = #{drName,jdbcType=VARCHAR},
+      tc_dr_pinyin = #{drPinyin,jdbcType=VARCHAR},
+      tc_password = #{password,jdbcType=VARCHAR},
+      tc_dr_cardid = #{drCardid,jdbcType=CHAR},
+      tc_dr_dept_code = #{drDeptCode,jdbcType=VARCHAR},
+      tc_dr_dept_name = #{drDeptName,jdbcType=VARCHAR},
+      tc_dr_level_code = #{drLevelCode,jdbcType=VARCHAR},
+      tc_dr_level_name = #{drLevelName,jdbcType=VARCHAR},
+      tc_dr_position_code = #{drPositionCode,jdbcType=VARCHAR},
+      tc_dr_position_name = #{drPositionName,jdbcType=VARCHAR},
+      tc_dr_photo = #{drPhoto,jdbcType=VARCHAR},
+      tc_dr_phone = #{drPhone,jdbcType=VARCHAR},
+      tc_dr_email = #{drEmail,jdbcType=VARCHAR},
+      tc_dr_sex = #{drSex,jdbcType=CHAR},
+      tc_dr_birthday = #{drBirthday,jdbcType=TIMESTAMP},
+      tc_dr_edu = #{drEdu,jdbcType=VARCHAR},
+      tc_dr_country = #{drCountry,jdbcType=VARCHAR},
+      tc_dr_nation = #{drNation,jdbcType=VARCHAR},
+      tc_dr_native_place = #{drNativePlace,jdbcType=VARCHAR},
+      tc_dr_state = #{drState,jdbcType=CHAR},
+      tc_dr_introduce = #{drIntroduce,jdbcType=VARCHAR},
+      tc_dr_good = #{drGood,jdbcType=VARCHAR},
+      tc_dr_expert_code = #{drExpertCode,jdbcType=VARCHAR},
+      tc_dr_expert_name = #{drExpertName,jdbcType=VARCHAR}
+    where tc_dr_id = #{drId,jdbcType=INTEGER}
+  </update>
+</mapper>

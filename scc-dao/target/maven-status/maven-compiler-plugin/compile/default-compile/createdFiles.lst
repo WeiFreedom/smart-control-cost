@@ -1,0 +1,16 @@
+com\wei\entity\Employee.class
+com\wei\dao\AppointmentMapper.class
+com\wei\dao\DeptMapper.class
+com\wei\entity\Dept.class
+com\wei\entity\criteria\EmployeeQuery.class
+com\wei\entity\criteria\EmployeeQuery$Criteria.class
+com\wei\entity\criteria\EmployeeQuery$Criterion.class
+com\wei\entity\Card.class
+com\wei\dao\SysConfigMapper.class
+com\wei\entity\HosDic.class
+com\wei\dao\EmployeeMapper.class
+com\wei\entity\SysConfig.class
+com\wei\dao\HosDicMapper.class
+com\wei\entity\criteria\EmployeeQuery$GeneratedCriteria.class
+com\wei\dao\CardMapper.class
+com\wei\entity\Appointment.class

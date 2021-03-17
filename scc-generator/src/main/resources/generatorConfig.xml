@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 配置数据库驱动 -->
+    <classPathEntry
+            location="D:\apache-maven-3.6.3\maven-repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar"/>
+    <context id="smart-control-cost" targetRuntime="MyBatis3">
+        <!-- 重命名 -->
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Query"/>
+        </plugin>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库链接的账号密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.62.147:3306/smart_hospital?useSSL=false"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- model位置 -->
+        <javaModelGenerator targetPackage="com.wei.entity" targetProject="scc-dao\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="exampleTargetPackage" value="com.wei.entity.criteria"/>
+        </javaModelGenerator>
+        <!-- 映射文件位置 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="scc-dao\src\main\java\com\wei">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- dao的存放位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wei.dao" targetProject="scc-dao\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- 生成对应的表及类名 -->
+        <table tableName="tb_menu"
+               domainObjectName="Menu">
+            <!-- 如果字段存在前缀需要先替换成空 -->
+            <columnRenamingRule searchString="^tc_" replaceString="" />
+        </table>
+    </context>
+
+</generatorConfiguration>

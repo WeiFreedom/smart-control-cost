@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.dao.DeptMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wei.entity.Dept">
+        <id column="tc_dept_id" property="deptId" />
+        <result column="tc_dept_code" property="deptCode" />
+        <result column="tc_dept_name" property="deptName" />
+        <result column="tc_dept_pinyin" property="deptPinyin" />
+        <result column="tc_dept_phone" property="deptPhone" />
+        <result column="tc_dept_parent_code" property="deptParentCode" />
+        <result column="tc_dept_sort" property="deptSort" />
+        <result column="tc_dept_introduce" property="deptIntroduce" />
+        <result column="tc_dept_address" property="deptAddress" />
+        <result column="tc_dept_type_code" property="deptTypeCode" />
+        <result column="tc_dept_type_name" property="deptTypeName" />
+        <result column="tc_dept_features" property="deptFeatures" />
+        <result column="tc_dept_state" property="deptState" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        tc_dept_id, tc_dept_code, tc_dept_name, tc_dept_pinyin, tc_dept_phone, tc_dept_parent_code, tc_dept_sort, tc_dept_introduce, tc_dept_address, tc_dept_type_code, tc_dept_type_name, tc_dept_features, tc_dept_state
+    </sql>
+
+</mapper>

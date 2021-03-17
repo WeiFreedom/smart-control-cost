@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.dao.ChargeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wei.entity.Charge">
+        <id column="tc_charge_id" property="chargeId" />
+        <result column="tc_charge_type" property="chargeType" />
+        <result column="tc_visit_id" property="visitId" />
+        <result column="tc_visit_series" property="visitSeries" />
+        <result column="tc_pt_id" property="ptId" />
+        <result column="tc_prescription_id" property="prescriptionId" />
+        <result column="tc_type" property="type" />
+        <result column="tc_charge_code" property="chargeCode" />
+        <result column="tc_charge_name" property="chargeName" />
+        <result column="tc_fee_specification" property="feeSpecification" />
+        <result column="tc_fee_unit_code" property="feeUnitCode" />
+        <result column="tc_fee_unit_name" property="feeUnitName" />
+        <result column="tc_fee_dose_unit" property="feeDoseUnit" />
+        <result column="tc_fee_packunit" property="feePackunit" />
+        <result column="tc_fee" property="fee" />
+        <result column="tc_charge_amount" property="chargeAmount" />
+        <result column="tc_fee_sum" property="feeSum" />
+        <result column="tc_main_id" property="mainId" />
+        <result column="tc_fee_status" property="feeStatus" />
+        <result column="tc_apply_dept_code" property="applyDeptCode" />
+        <result column="tc_exec_dept_code" property="execDeptCode" />
+        <result column="tc_charge_date" property="chargeDate" />
+        <result column="tc_apply_time" property="applyTime" />
+        <result column="tc_exec_time" property="execTime" />
+        <result column="tc_exec_status" property="execStatus" />
+        <result column="tc_charge_time" property="chargeTime" />
+    </resultMap>
+
+    <resultMap id="InpatientMiChargeDtoResultMap" type="com.wei.dto.InpatientMiChargeDto">
+        <result column="tc_pt_name" property="ptName" />
+        <result column="tc_pt_io_no" property="ptIoNo" />
+        <result column="tc_visit_bed_name" property="visitBedName" />
+        <result column="tc_visit_dept_name" property="visitDeptName" />
+        <result column="tc_medical_time" property="medicalTime" />
+        <result column="days" property="days" />
+        <result column="nurse" property="nurse" />
+        <result column="bed" property="bed" />
+        <result column="consult" property="consult" />
+        <result column="tc_mi_sum" property="miSum" />
+        <result column="tc_fee_sum" property="feeSum" />
+    </resultMap>
+
+    <resultMap id="OutpatientMiChargeDtoResultMap" type="com.wei.dto.OutpatientMiChargeDto">
+        <result column="tc_pt_name" property="ptName" />
+        <result column="tc_pt_io_no" property="ptIoNo" />
+        <result column="tc_visit_dept_name" property="visitDeptName" />
+        <result column="tc_visit_time" property="visitTime" />
+        <result column="tc_diagnose_name" property="diagnoseName" />
+        <result column="tc_contrast_sum" property="contrastSum" />
+        <result column="tc_fee_sum" property="feeSum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        tc_charge_id, tc_charge_type, tc_visit_id, tc_visit_series, tc_pt_id, tc_prescription_id, tc_type, tc_charge_code, tc_charge_name, tc_fee_specification, tc_fee_unit_code, tc_fee_unit_name, tc_fee_dose_unit, tc_fee_packunit, tc_fee, tc_charge_amount, tc_fee_sum, tc_main_id, tc_fee_status, tc_apply_dept_code, tc_exec_dept_code, tc_charge_date, tc_apply_time, tc_exec_time, tc_exec_status, tc_charge_time
+    </sql>
+
+
+    <select id="getInpatientMiChargeDtoList" parameterType="map" resultType="com.wei.dto.InpatientMiChargeDto"
+    resultMap="InpatientMiChargeDtoResultMap">
+        select
+            visit.tc_pt_name,
+            patient.tc_pt_io_no,
+            visit.tc_visit_bed_name,
+            visit.tc_visit_dept_name,
+            visit.tc_medical_time,
+            TIMESTAMPDIFF(DAY,DATE_FORMAT(visit.tc_medical_time, '%Y-%m-%d %H:%i:%S'),DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%S')) days,
+            sum(case when contrast.tc_nurse_flag = 'Y' then 1 else 0 end) nurse,
+            sum(case when contrast.tc_bed_flag = 'Y' then 1 else 0 end) bed,
+            sum(case when contrast.tc_i_consult_flag = 'Y' then 1 else 0 end) consult,
+            sum(case when contrast.tc_mi_class in ('1','2') then charge.tc_fee_sum else 0 end) tc_mi_sum,
+            sum(charge.tc_fee_sum) tc_fee_sum
+        from tb_charge charge left join tb_contrast contrast
+        on charge.tc_charge_code = contrast.tc_fee_code
+        ,tb_pt_visit visit,tb_patient patient
+        where charge.tc_visit_id = visit.tc_visit_id
+        and patient.tc_pt_id = visit.tc_pt_id
+        and visit.tc_mi_type = #{type}
+        and visit.tc_visit_type = '1'
+        <choose>
+            <when test="outflag == '1'">
+                and visit.tc_out_time is null
+            </when>
+            <otherwise>
+                and visit.tc_out_time is not null
+            </otherwise>
+        </choose>
+        and visit.tc_medical_time &gt;= DATE_FORMAT(#{startDt},'%Y-%m-%d %H:%i:%S')
+        and visit.tc_medical_time &lt;= DATE_FORMAT(#{endDt},'%Y-%m-%d %H:%i:%S')
+        group by visit.tc_pt_name,
+        patient.tc_pt_io_no,
+        visit.tc_visit_bed_name,
+        visit.tc_visit_dept_name,
+        visit.tc_medical_time
+    </select>
+
+    <select id="getOutpatientMiChargeDtoList" parameterType="map" resultType="com.wei.dto.OutpatientMiChargeDto" resultMap="OutpatientMiChargeDtoResultMap">
+        select
+            visit.tc_pt_name,
+            patient.tc_pt_io_no,
+            visit.tc_visit_dept_name,
+            visit.tc_visit_time,
+			visit.tc_diagnose_name,
+			dcontrast.tc_fee_sum tc_contrast_sum,
+            sum(charge.tc_fee_sum) tc_fee_sum
+        from tb_charge charge,tb_pt_visit visit ,tb_disease_contrast dcontrast,tb_patient patient
+        where charge.tc_visit_id = visit.tc_visit_id
+        and patient.tc_pt_id = visit.tc_pt_id
+		and visit.tc_diagnose_code = dcontrast.tc_diag_code
+		and dcontrast.tc_dtrast_type = '01'
+		and dcontrast.tc_diag_type = '01'
+        and visit.tc_visit_type in ('0','2')
+		and visit.tc_mi_type = #{type}
+		and visit.tc_disease_type = '01'
+        and visit.tc_visit_time &gt;= DATE_FORMAT(#{startDt},'%Y-%m-%d %H:%i:%S')
+        and visit.tc_visit_time &lt;= DATE_FORMAT(#{endDt},'%Y-%m-%d %H:%i:%S')
+        group by visit.tc_pt_name,
+            patient.tc_pt_io_no,
+            visit.tc_visit_dept_name,
+            visit.tc_visit_time,
+						visit.tc_diagnose_name,
+						dcontrast.tc_fee_sum
+    </select>
+
+</mapper>

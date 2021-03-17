@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.dao.CardMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wei.entity.Card">
+        <id column="tc_card_no" property="cardNo" />
+        <result column="tc_pt_id" property="ptId" />
+        <result column="tc_card_type" property="cardType" />
+        <result column="tc_mod_dt" property="modDt" />
+        <result column="tc_mod_code" property="modCode" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        tc_card_no, tc_pt_id, tc_card_type, tc_mod_dt, tc_mod_code
+    </sql>
+
+</mapper>

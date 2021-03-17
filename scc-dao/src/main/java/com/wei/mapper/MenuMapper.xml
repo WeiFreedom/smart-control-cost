@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.dao.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wei.entity.Menu">
+        <id column="tc_menu_id" property="menuId" />
+        <result column="tc_menu_path" property="menuPath" />
+        <result column="tc_menu_name" property="menuName" />
+        <result column="tc_menu_caption" property="menuCaption" />
+        <result column="tc_menu_state" property="menuState" />
+        <result column="tc_menu_icon" property="menuIcon" />
+        <result column="tc_menu_auth_flag" property="menuAuthFlag" />
+        <result column="tc_menu_parent_id" property="menuParentId" />
+        <result column="tc_menu_parent_name" property="menuParentName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        tc_menu_id, tc_menu_path, tc_menu_name, tc_menu_caption, tc_menu_state, tc_menu_icon, tc_menu_auth_flag, tc_menu_parent_id, tc_menu_parent_name
+    </sql>
+
+    <select id="getMenuListByCode" resultMap="BaseResultMap" resultType="com.wei.entity.Menu" parameterType="string">
+        select a.*
+        from tb_menu a,
+        tb_menu_auth b,tb_role_emp c
+        where b.tc_role_id = c.tb_role_id
+        and a.tc_menu_id = b.tc_menu_id
+        and c.tc_dr_code = #{code}
+        and c.tc_state = 'Y'
+        and a.tc_menu_state = 'Y'
+    </select>
+
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.dao.AppointmentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wei.entity.Appointment">
+        <id column="tc_appoint_id" property="appointId" />
+        <result column="tc_appoint_sche_id" property="appointScheId" />
+        <result column="tc_appoint_name" property="appointName" />
+        <result column="tc_appoinit_pt_id" property="appoinitPtId" />
+        <result column="tc_appoint_io_no" property="appointIoNo" />
+        <result column="tc_appoint_no" property="appointNo" />
+        <result column="tc_appoint_phone" property="appointPhone" />
+        <result column="tc_appoint_dr_code" property="appointDrCode" />
+        <result column="tc_appoint_dept_code" property="appointDeptCode" />
+        <result column="tc_appoint_apn" property="appointApn" />
+        <result column="tc_appoint_date" property="appointDate" />
+        <result column="tc_appoint_time" property="appointTime" />
+        <result column="tc_appoint_state" property="appointState" />
+        <result column="tc_appoint_use_type" property="appointUseType" />
+        <result column="tc_appoint_use_name" property="appointUseName" />
+        <result column="tc_appoint_create_date" property="appointCreateDate" />
+        <result column="tc_appoint_cancel_date" property="appointCancelDate" />
+        <result column="tc_appoint_blacklist" property="appointBlacklist" />
+        <result column="tc_appoint_opt_code" property="appointOptCode" />
+        <result column="tc_appoint_cancal_opt_code" property="appointCancalOptCode" />
+        <result column="tc_scheduling_detail_id" property="schedulingDetailId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        tc_appoint_id, tc_appoint_sche_id, tc_appoint_name, tc_appoinit_pt_id, tc_appoint_io_no, tc_appoint_no, tc_appoint_phone, tc_appoint_dr_code, tc_appoint_dept_code, tc_appoint_apn, tc_appoint_date, tc_appoint_time, tc_appoint_state, tc_appoint_use_type, tc_appoint_use_name, tc_appoint_create_date, tc_appoint_cancel_date, tc_appoint_blacklist, tc_appoint_opt_code, tc_appoint_cancal_opt_code, tc_scheduling_detail_id
+    </sql>
+
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.dao.PtVisitMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wei.entity.PtVisit">
+        <id column="tc_visit_id" property="visitId" />
+        <result column="tc_visit_series" property="visitSeries" />
+        <result column="tc_pt_id" property="ptId" />
+        <result column="tc_visit_type" property="visitType" />
+        <result column="tc_pt_name" property="ptName" />
+        <result column="tc_visit_dept_code" property="visitDeptCode" />
+        <result column="tc_visit_dept_name" property="visitDeptName" />
+        <result column="tc_visit_time" property="visitTime" />
+        <result column="tc_visit_status" property="visitStatus" />
+        <result column="tc_dr_code" property="drCode" />
+        <result column="tc_opt_code" property="optCode" />
+        <result column="tc_back_time" property="backTime" />
+        <result column="tc_register_fee" property="registerFee" />
+        <result column="tc_medical_status" property="medicalStatus" />
+        <result column="tc_medical_time" property="medicalTime" />
+        <result column="tc_mi_type" property="miType" />
+        <result column="tc_chronic_type" property="chronicType" />
+        <result column="tc_special_type" property="specialType" />
+        <result column="tc_green_channel" property="greenChannel" />
+        <result column="tc_diagnose_name" property="diagnoseName" />
+        <result column="tc_diagnose_code" property="diagnoseCode" />
+        <result column="tc_disease_type" property="diseaseType" />
+    </resultMap>
+
+    <resultMap id="ptVisitMiStatisticsDtoResultMap" type="com.wei.dto.PtVisitMiStatisticsDto">
+        <result column="month" property="month"/>
+        <result column="mi" property="miNumber"/>
+        <result column="total" property="total"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        tc_visit_id, tc_visit_series, tc_pt_id, tc_visit_type, tc_pt_name, tc_visit_dept_code, tc_visit_dept_name, tc_visit_time, tc_visit_status, tc_dr_code, tc_opt_code, tc_back_time, tc_register_fee, tc_medical_status, tc_medical_time, tc_mi_type, tc_chronic_type, tc_special_type, tc_green_channel, tc_diagnose_name, tc_diagnose_code, tc_disease_type
+    </sql>
+
+    <select id="medicarePatientsNumber" parameterType="int" resultType="com.wei.dto.PtVisitMiStatisticsDto" resultMap="ptVisitMiStatisticsDtoResultMap">
+        select tc_visit_type type,
+            date_format((case when tc_visit_type in ('0','2','3') then tc_medical_time else tc_out_time end),'%Y-%m') month,
+            sum(case when tc_mi_type in ('02','03','04') then 1 else  0 end) mi,
+            sum(1) total
+        from tb_pt_visit
+        where tc_visit_status = '1'
+        and (case when tc_visit_type in ('0','2','3') then tc_medical_time else tc_out_time end)
+            >  DATE_ADD( DATE_ADD(curdate(),interval -day(curdate())+1 day), interval -${month} month)
+        group by tc_visit_type,date_format((case when tc_visit_type in ('0','2','3') then tc_medical_time else tc_out_time end),'%Y-%m')
+    </select>
+
+
+</mapper>

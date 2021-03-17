@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.dao.SysConfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wei.entity.SysConfig">
+        <id column="tc_id" property="id" />
+        <result column="tc_sys_code" property="sysCode" />
+        <result column="tc_sys_remark" property="sysRemark" />
+        <result column="tc_sys_number" property="sysNumber" />
+        <result column="tc_sys_decimal" property="sysDecimal" />
+        <result column="tc_sys_date" property="sysDate" />
+        <result column="tc_sys_str" property="sysStr" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        tc_id, tc_sys_code, tc_sys_remark, tc_sys_number, tc_sys_decimal, tc_sys_date, tc_sys_str
+    </sql>
+
+</mapper>

@@ -1,0 +1,82 @@
+# 项目信息
+scc:
+  name: wei
+  version: 1.0.0
+# 端口
+server:
+  port: 8081
+# 数据库配置
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.117.129:3306/smart_hospital?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    # 使用druid作为数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 192.168.117.129
+    port: 6379
+    # 连接池最大阻塞时间,使用负值表示没有限制
+    max-wait: 30000
+    # 连接池的最大连接数,使用负值表示没有限制
+    max-active: 100
+    #连接池中最大空闲链接
+    max-idle: 20
+    #连接池中最小空闲链接
+    min-idle: 0
+    #链接超时
+    timeout: 3000
+  rabbitmq:
+    enabled: false
+    host: 192.168.117.129
+    port: 5672
+    username: root
+    password: root
+    # 消息确认
+    publisher-returns: true
+    publisher-confirm-type: correlated
+
+    # 开启手动确认
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
+        # 指定最小消费者的数量
+        concurrency: 1
+        # 指定最大消费者的数量
+        max-concurrency: 5
+        # 是否支持重试
+        retry:
+          enabled: true
+#mybatis
+#mybatis:
+#  mapper-locations: com/wei/mapper/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+#mybatis-plus
+mybatis-plus:
+  global-config:
+    db-config:
+      column-format: tc_%s
+  mapper-locations: com/wei/mapper/*.xml
+  configuration:
+    cache-enabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#swagger-ui
+knife4j:
+  # 开启增强配置
+  enable: true
+  # 开启生产环境屏蔽
+  production: false
+    # 开启Swagger的Basic认证功能,默认是false
+  basic:
+    enable: false
+    # Basic认证用户名
+    username: root
+    # Basic认证密码
+    password: root
+#log
+logging:
+  config: classpath:logback.xml

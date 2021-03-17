@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wei.dao.PageMedicalRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wei.entity.PageMedicalRecord">
+        <id column="tc_visit_id" property="visitId" />
+        <result column="P900" property="p900" />
+        <result column="P6891" property="p6891" />
+        <result column="P686" property="p686" />
+        <result column="P800" property="p800" />
+        <result column="P1" property="p1" />
+        <result column="P2" property="p2" />
+        <result column="P3" property="p3" />
+        <result column="P4" property="p4" />
+        <result column="P5" property="p5" />
+        <result column="P6" property="p6" />
+        <result column="P7" property="p7" />
+        <result column="P8" property="p8" />
+        <result column="P9" property="p9" />
+        <result column="P101" property="p101" />
+        <result column="P102" property="p102" />
+        <result column="P103" property="p103" />
+        <result column="P11" property="p11" />
+        <result column="P12" property="p12" />
+        <result column="P13" property="p13" />
+        <result column="P801" property="p801" />
+        <result column="P802" property="p802" />
+        <result column="P803" property="p803" />
+        <result column="P14" property="p14" />
+        <result column="P15" property="p15" />
+        <result column="P16" property="p16" />
+        <result column="P17" property="p17" />
+        <result column="P171" property="p171" />
+        <result column="P18" property="p18" />
+        <result column="P19" property="p19" />
+        <result column="P20" property="p20" />
+        <result column="P804" property="p804" />
+        <result column="P21" property="p21" />
+        <result column="P22" property="p22" />
+        <result column="P23" property="p23" />
+        <result column="P231" property="p231" />
+        <result column="P24" property="p24" />
+        <result column="P25" property="p25" />
+        <result column="P26" property="p26" />
+        <result column="P261" property="p261" />
+        <result column="P27" property="p27" />
+        <result column="P28" property="p28" />
+        <result column="P281" property="p281" />
+        <result column="P29" property="p29" />
+        <result column="P30" property="p30" />
+        <result column="P301" property="p301" />
+        <result column="P31" property="p31" />
+        <result column="P321" property="p321" />
+        <result column="P322" property="p322" />
+        <result column="P805" property="p805" />
+        <result column="P323" property="p323" />
+        <result column="P324" property="p324" />
+        <result column="P325" property="p325" />
+        <result column="P806" property="p806" />
+        <result column="P326" property="p326" />
+        <result column="P327" property="p327" />
+        <result column="P328" property="p328" />
+        <result column="P807" property="p807" />
+        <result column="P329" property="p329" />
+        <result column="P3291" property="p3291" />
+        <result column="P3292" property="p3292" />
+        <result column="P808" property="p808" />
+        <result column="P3293" property="p3293" />
+        <result column="P3294" property="p3294" />
+        <result column="P3295" property="p3295" />
+        <result column="P809" property="p809" />
+        <result column="P3296" property="p3296" />
+        <result column="P3297" property="p3297" />
+        <result column="P3298" property="p3298" />
+        <result column="P810" property="p810" />
+        <result column="P3299" property="p3299" />
+        <result column="P3281" property="p3281" />
+        <result column="P3282" property="p3282" />
+        <result column="P811" property="p811" />
+        <result column="P3283" property="p3283" />
+        <result column="P3284" property="p3284" />
+        <result column="P3285" property="p3285" />
+        <result column="P812" property="p812" />
+        <result column="P3286" property="p3286" />
+        <result column="P3287" property="p3287" />
+        <result column="P3288" property="p3288" />
+        <result column="P813" property="p813" />
+        <result column="P3289" property="p3289" />
+        <result column="P3271" property="p3271" />
+        <result column="P3272" property="p3272" />
+        <result column="P814" property="p814" />
+        <result column="P3273" property="p3273" />
+        <result column="P3274" property="p3274" />
+        <result column="P3275" property="p3275" />
+        <result column="P815" property="p815" />
+        <result column="P3276" property="p3276" />
+        <result column="P689" property="p689" />
+        <result column="P351" property="p351" />
+        <result column="P352" property="p352" />
+        <result column="P816" property="p816" />
+        <result column="P353" property="p353" />
+        <result column="P354" property="p354" />
+        <result column="P817" property="p817" />
+        <result column="P355" property="p355" />
+        <result column="P356" property="p356" />
+        <result column="P818" property="p818" />
+        <result column="P361" property="p361" />
+        <result column="P362" property="p362" />
+        <result column="P363" property="p363" />
+        <result column="P364" property="p364" />
+        <result column="P365" property="p365" />
+        <result column="P366" property="p366" />
+        <result column="P371" property="p371" />
+        <result column="P372" property="p372" />
+        <result column="P38" property="p38" />
+        <result column="P39" property="p39" />
+        <result column="P40" property="p40" />
+        <result column="P411" property="p411" />
+        <result column="P412" property="p412" />
+        <result column="P413" property="p413" />
+        <result column="P414" property="p414" />
+        <result column="P415" property="p415" />
+        <result column="P421" property="p421" />
+        <result column="P422" property="p422" />
+        <result column="P687" property="p687" />
+        <result column="P688" property="p688" />
+        <result column="P431" property="p431" />
+        <result column="P432" property="p432" />
+        <result column="P433" property="p433" />
+        <result column="P434" property="p434" />
+        <result column="P819" property="p819" />
+        <result column="P435" property="p435" />
+        <result column="P436" property="p436" />
+        <result column="P437" property="p437" />
+        <result column="P438" property="p438" />
+        <result column="P44" property="p44" />
+        <result column="P45" property="p45" />
+        <result column="P46" property="p46" />
+        <result column="P47" property="p47" />
+        <result column="P490" property="p490" />
+        <result column="P491" property="p491" />
+        <result column="P820" property="p820" />
+        <result column="P492" property="p492" />
+        <result column="P493" property="p493" />
+        <result column="P494" property="p494" />
+        <result column="P495" property="p495" />
+        <result column="P496" property="p496" />
+        <result column="P497" property="p497" />
+        <result column="P498" property="p498" />
+        <result column="P4981" property="p4981" />
+        <result column="P499" property="p499" />
+        <result column="P4910" property="p4910" />
+        <result column="P4911" property="p4911" />
+        <result column="P4912" property="p4912" />
+        <result column="P821" property="p821" />
+        <result column="P4913" property="p4913" />
+        <result column="P4914" property="p4914" />
+        <result column="P4915" property="p4915" />
+        <result column="P4916" property="p4916" />
+        <result column="P4917" property="p4917" />
+        <result column="P4918" property="p4918" />
+        <result column="P4919" property="p4919" />
+        <result column="P4982" property="p4982" />
+        <result column="P4920" property="p4920" />
+        <result column="P4921" property="p4921" />
+        <result column="P4922" property="p4922" />
+        <result column="P4923" property="p4923" />
+        <result column="P822" property="p822" />
+        <result column="P4924" property="p4924" />
+        <result column="P4925" property="p4925" />
+        <result column="P4526" property="p4526" />
+        <result column="P4527" property="p4527" />
+        <result column="P4528" property="p4528" />
+        <result column="P4529" property="p4529" />
+        <result column="P4530" property="p4530" />
+        <result column="P4983" property="p4983" />
+        <result column="P4531" property="p4531" />
+        <result column="P4532" property="p4532" />
+        <result column="P4533" property="p4533" />
+        <result column="P4534" property="p4534" />
+        <result column="P823" property="p823" />
+        <result column="P4535" property="p4535" />
+        <result column="P4536" property="p4536" />
+        <result column="P4537" property="p4537" />
+        <result column="P4538" property="p4538" />
+        <result column="P4539" property="p4539" />
+        <result column="P4540" property="p4540" />
+        <result column="P4541" property="p4541" />
+        <result column="P4984" property="p4984" />
+        <result column="P4542" property="p4542" />
+        <result column="P4543" property="p4543" />
+        <result column="P4544" property="p4544" />
+        <result column="P4545" property="p4545" />
+        <result column="P824" property="p824" />
+        <result column="P4546" property="p4546" />
+        <result column="P4547" property="p4547" />
+        <result column="P4548" property="p4548" />
+        <result column="P4549" property="p4549" />
+        <result column="P4550" property="p4550" />
+        <result column="P4551" property="p4551" />
+        <result column="P4552" property="p4552" />
+        <result column="P4985" property="p4985" />
+        <result column="P4553" property="p4553" />
+        <result column="P4554" property="p4554" />
+        <result column="P45002" property="p45002" />
+        <result column="P45003" property="p45003" />
+        <result column="P825" property="p825" />
+        <result column="p45004" property="p45004" />
+        <result column="p45005" property="p45005" />
+        <result column="p45006" property="p45006" />
+        <result column="p45007" property="p45007" />
+        <result column="p45008" property="p45008" />
+        <result column="p45009" property="p45009" />
+        <result column="p45010" property="p45010" />
+        <result column="p45011" property="p45011" />
+        <result column="p45012" property="p45012" />
+        <result column="p45013" property="p45013" />
+        <result column="p45014" property="p45014" />
+        <result column="p45015" property="p45015" />
+        <result column="P826" property="p826" />
+        <result column="p45016" property="p45016" />
+        <result column="p45017" property="p45017" />
+        <result column="p45018" property="p45018" />
+        <result column="p45019" property="p45019" />
+        <result column="p45020" property="p45020" />
+        <result column="p45021" property="p45021" />
+        <result column="p45022" property="p45022" />
+        <result column="p45023" property="p45023" />
+        <result column="p45024" property="p45024" />
+        <result column="p45025" property="p45025" />
+        <result column="p45026" property="p45026" />
+        <result column="p45027" property="p45027" />
+        <result column="P827" property="p827" />
+        <result column="p45028" property="p45028" />
+        <result column="p45029" property="p45029" />
+        <result column="p45030" property="p45030" />
+        <result column="p45031" property="p45031" />
+        <result column="p45032" property="p45032" />
+        <result column="p45033" property="p45033" />
+        <result column="p45034" property="p45034" />
+        <result column="p45035" property="p45035" />
+        <result column="p45036" property="p45036" />
+        <result column="p45037" property="p45037" />
+        <result column="p45038" property="p45038" />
+        <result column="p45039" property="p45039" />
+        <result column="P828" property="p828" />
+        <result column="p45040" property="p45040" />
+        <result column="p45041" property="p45041" />
+        <result column="p45042" property="p45042" />
+        <result column="p45043" property="p45043" />
+        <result column="p45044" property="p45044" />
+        <result column="p45045" property="p45045" />
+        <result column="p45046" property="p45046" />
+        <result column="p45047" property="p45047" />
+        <result column="p45048" property="p45048" />
+        <result column="p45049" property="p45049" />
+        <result column="p45050" property="p45050" />
+        <result column="p45051" property="p45051" />
+        <result column="P829" property="p829" />
+        <result column="p45052" property="p45052" />
+        <result column="p45053" property="p45053" />
+        <result column="p45054" property="p45054" />
+        <result column="p45055" property="p45055" />
+        <result column="p45056" property="p45056" />
+        <result column="p45057" property="p45057" />
+        <result column="p45058" property="p45058" />
+        <result column="p45059" property="p45059" />
+        <result column="p45060" property="p45060" />
+        <result column="p45061" property="p45061" />
+        <result column="P561" property="p561" />
+        <result column="P562" property="p562" />
+        <result column="P563" property="p563" />
+        <result column="P564" property="p564" />
+        <result column="P6911" property="p6911" />
+        <result column="P6912" property="p6912" />
+        <result column="P6913" property="p6913" />
+        <result column="P6914" property="p6914" />
+        <result column="P6915" property="p6915" />
+        <result column="P6916" property="p6916" />
+        <result column="P6917" property="p6917" />
+        <result column="P6918" property="p6918" />
+        <result column="P6919" property="p6919" />
+        <result column="P6920" property="p6920" />
+        <result column="P6921" property="p6921" />
+        <result column="P6922" property="p6922" />
+        <result column="P6923" property="p6923" />
+        <result column="P6924" property="p6924" />
+        <result column="P6925" property="p6925" />
+        <result column="P57" property="p57" />
+        <result column="P58" property="p58" />
+        <result column="P581" property="p581" />
+        <result column="P60" property="p60" />
+        <result column="P611" property="p611" />
+        <result column="P612" property="p612" />
+        <result column="P613" property="p613" />
+        <result column="P59" property="p59" />
+        <result column="P62" property="p62" />
+        <result column="P63" property="p63" />
+        <result column="P64" property="p64" />
+        <result column="P651" property="p651" />
+        <result column="P652" property="p652" />
+        <result column="P653" property="p653" />
+        <result column="P654" property="p654" />
+        <result column="P655" property="p655" />
+        <result column="P656" property="p656" />
+        <result column="P66" property="p66" />
+        <result column="P681" property="p681" />
+        <result column="P682" property="p682" />
+        <result column="P683" property="p683" />
+        <result column="P684" property="p684" />
+        <result column="P685" property="p685" />
+        <result column="P731" property="p731" />
+        <result column="P732" property="p732" />
+        <result column="P733" property="p733" />
+        <result column="P734" property="p734" />
+        <result column="P72" property="p72" />
+        <result column="P830" property="p830" />
+        <result column="P831" property="p831" />
+        <result column="P741" property="p741" />
+        <result column="P742" property="p742" />
+        <result column="P743" property="p743" />
+        <result column="P782" property="p782" />
+        <result column="P751" property="p751" />
+        <result column="P752" property="p752" />
+        <result column="P754" property="p754" />
+        <result column="P755" property="p755" />
+        <result column="P756" property="p756" />
+        <result column="P757" property="p757" />
+        <result column="P758" property="p758" />
+        <result column="P759" property="p759" />
+        <result column="P760" property="p760" />
+        <result column="P761" property="p761" />
+        <result column="P762" property="p762" />
+        <result column="P763" property="p763" />
+        <result column="P764" property="p764" />
+        <result column="P765" property="p765" />
+        <result column="P767" property="p767" />
+        <result column="P768" property="p768" />
+        <result column="P769" property="p769" />
+        <result column="P770" property="p770" />
+        <result column="P771" property="p771" />
+        <result column="P772" property="p772" />
+        <result column="P773" property="p773" />
+        <result column="P774" property="p774" />
+        <result column="P775" property="p775" />
+        <result column="P776" property="p776" />
+        <result column="P777" property="p777" />
+        <result column="P778" property="p778" />
+        <result column="P779" property="p779" />
+        <result column="P780" property="p780" />
+        <result column="P781" property="p781" />
+    </resultMap>
+
+    <resultMap id="VerifyPageMedicalRecordDtoMap" type="com.wei.dto.VerifyPageMedicalRecordDto">
+        <result column="P4" property="ptName"/>
+        <result column="P3" property="ptMedicalNo"/>
+        <result column="P23" property="deptName"/>
+        <result column="P433" property="drName"/>
+        <result column="outDate" property="outDate"/>
+        <result column="P321" property="diagCode"/>
+        <result column="P490" property="operCode"/>
+        <result column="outDate" property="outDate"/>
+        <result column="VerifyDiag" property="verifyDiag"/>
+        <result column="verifyOper" property="verifyOper"/>
+        <result column="verifyOtherOper" property="verifyOtherOper"/>
+        <result column="verifyRationality" property="verifyRationality"/>
+    </resultMap>
+
+    <resultMap id="MdcAdrgDiagMap" type="com.wei.entity.MdcAdrgDiag">
+        <result column="tc_adrg_code" property="adrgCode"/>
+        <result column="tc_diag_type" property="diagType"/>
+        <result column="tc_diag_code" property="diagCode"/>
+        <result column="tc_diag_name" property="diagName"/>
+        <result column="tc_adrg_condition" property="adrgCondition"/>
+    </resultMap>
+
+    <resultMap id="MdcAdrgMap" type="com.wei.entity.MdcAdrg">
+        <result column="tc_mdc_code" property="mdcCode"/>
+        <result column="tc_adrg_code" property="adrgCode"/>
+        <result column="tc_adrg_name" property="adrgName"/>
+        <result column="tc_adrg_condition" property="adrgCondition"/>
+    </resultMap>
+
+    <resultMap id="DrgMccMap" type="com.wei.entity.DrgMcc">
+        <result column="tc_mc_exc_code" property="mcExcCode"/>
+        <result column="tc_diag_code" property="diagCode"/>
+        <result column="tc_diag_name" property="diagName"/>
+    </resultMap>
+<resultMap id="DrgCcMap" type="com.wei.entity.DrgCc">
+        <result column="tc_mc_exc_code" property="mcExcCode"/>
+        <result column="tc_diag_code" property="diagCode"/>
+        <result column="tc_diag_name" property="diagName"/>
+    </resultMap>
+<resultMap id="McExcMap" type="com.wei.entity.McExc">
+        <result column="tc_mc_exc_code" property="mcExcCode"/>
+        <result column="tc_diag_code" property="diagCode"/>
+        <result column="tc_diag_name" property="diagName"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        tc_visit_id, P900, P6891, P686, P800, P1, P2, P3, P4, P5, P6, P7, P8, P9, P101, P102, P103, P11, P12, P13, P801, P802, P803, P14, P15, P16, P17, P171, P18, P19, P20, P804, P21, P22, P23, P231, P24, P25, P26, P261, P27, P28, P281, P29, P30, P301, P31, P321, P322, P805, P323, P324, P325, P806, P326, P327, P328, P807, P329, P3291, P3292, P808, P3293, P3294, P3295, P809, P3296, P3297, P3298, P810, P3299, P3281, P3282, P811, P3283, P3284, P3285, P812, P3286, P3287, P3288, P813, P3289, P3271, P3272, P814, P3273, P3274, P3275, P815, P3276, P689, P351, P352, P816, P353, P354, P817, P355, P356, P818, P361, P362, P363, P364, P365, P366, P371, P372, P38, P39, P40, P411, P412, P413, P414, P415, P421, P422, P687, P688, P431, P432, P433, P434, P819, P435, P436, P437, P438, P44, P45, P46, P47, P490, P491, P820, P492, P493, P494, P495, P496, P497, P498, P4981, P499, P4910, P4911, P4912, P821, P4913, P4914, P4915, P4916, P4917, P4918, P4919, P4982, P4920, P4921, P4922, P4923, P822, P4924, P4925, P4526, P4527, P4528, P4529, P4530, P4983, P4531, P4532, P4533, P4534, P823, P4535, P4536, P4537, P4538, P4539, P4540, P4541, P4984, P4542, P4543, P4544, P4545, P824, P4546, P4547, P4548, P4549, P4550, P4551, P4552, P4985, P4553, P4554, P45002, P45003, P825, p45004, p45005, p45006, p45007, p45008, p45009, p45010, p45011, p45012, p45013, p45014, p45015, P826, p45016, p45017, p45018, p45019, p45020, p45021, p45022, p45023, p45024, p45025, p45026, p45027, P827, p45028, p45029, p45030, p45031, p45032, p45033, p45034, p45035, p45036, p45037, p45038, p45039, P828, p45040, p45041, p45042, p45043, p45044, p45045, p45046, p45047, p45048, p45049, p45050, p45051, P829, p45052, p45053, p45054, p45055, p45056, p45057, p45058, p45059, p45060, p45061, P561, P562, P563, P564, P6911, P6912, P6913, P6914, P6915, P6916, P6917, P6918, P6919, P6920, P6921, P6922, P6923, P6924, P6925, P57, P58, P581, P60, P611, P612, P613, P59, P62, P63, P64, P651, P652, P653, P654, P655, P656, P66, P681, P682, P683, P684, P685, P731, P732, P733, P734, P72, P830, P831, P741, P742, P743, P782, P751, P752, P754, P755, P756, P757, P758, P759, P760, P761, P762, P763, P764, P765, P767, P768, P769, P770, P771, P772, P773, P774, P775, P776, P777, P778, P779, P780, P781
+    </sql>
+
+    <sql id="DrgMcc_Column_List">
+        tc_mc_exc_code,
+        tc_diag_code,
+        tc_diag_name
+    </sql>
+
+    <select id="verifyPageMedicalRecordList" resultType="com.wei.dto.VerifyPageMedicalRecordDto"
+    resultMap="VerifyPageMedicalRecordDtoMap">
+        select
+        P4,#姓名
+        P3,#病案号
+        P23,#科室
+        P433,#主治医生
+        date_format(P25, '%Y-%m-%d %H%I%s') outDate,#出院日期
+        P321,#主要诊断编码
+        P490,#主要手术编码
+        (case when P321 is null or P321 = '' then 'N' else 'Y' end) VerifyDiag,#主诊断编码验证
+        (case when P490 is null or P490 = '' then 'N' else 'Y' end) VerifyOper,#主要手术编码验证
+        (case when (P4911 is null or P4911 = '') and
+        (P4922 is null or P4922 = '') and
+        (P4533 is null or P4533 = '') and
+        (P4544 is null or P4544 = '') and
+        (P45002 is null or P45002 = '') and
+        (p45014 is null or p45014 = '') and
+        (p45038 is null or p45038 = '') and
+        (p45050 is null or p45050 = '') then 'N' else 'Y' end) VerifyOtherOper,#其他手术编码验证
+        #主要手术编码与治疗方式对应关系
+        '' VerifyRationality#主要诊断与主要手术匹配合理性
+        from tb_page_medical_record
+        where P22 &gt;= DATE_FORMAT(#{startDt},'%Y-%m-%d %H:%i:%S')
+        and P22 &lt;= DATE_FORMAT(#{endDt},'%Y-%m-%d %H:%i:%S')
+    </select>
+
+    <select id="getMdcAdrgDiagList" resultType="com.wei.entity.MdcAdrgDiag" resultMap="MdcAdrgDiagMap">
+        select
+         tc_adrg_code,
+         tc_diag_type,
+         tc_diag_code,
+         tc_diag_name,
+         tc_adrg_condition
+         from tb_mdc_adrg_diag
+    </select>
+    
+    <select id="getMdcAdrgList" resultMap="MdcAdrgMap" resultType="com.wei.entity.MdcAdrg">
+        select
+        tc_mdc_code,
+        tc_adrg_code,
+        tc_adrg_name,
+        tc_adrg_condition
+        from tb_mdc_adrg
+    </select>
+
+    <select id="getDrgMccList" resultMap="DrgMccMap" resultType="com.wei.entity.DrgMcc">
+        select
+        <include refid="DrgMcc_Column_List"></include>
+        from tb_drg_mcc
+    </select>
+
+    <select id="getDrgCcList" resultMap="DrgCcMap" resultType="com.wei.entity.DrgCc">
+        select
+        <include refid="DrgMcc_Column_List"></include>
+        from tb_drg_cc
+    </select>
+
+    <select id="getMcExcList" resultMap="McExcMap" resultType="com.wei.entity.McExc">
+        select
+        <include refid="DrgMcc_Column_List"></include>
+        from tb_mc_exc
+    </select>
+
+</mapper>
